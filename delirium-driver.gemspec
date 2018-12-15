@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["SuperbotHQ"]
 
   spec.summary       = "delirium driver"
-  spec.homepage      = "https://github.com/superbothq/delirium-driver"
+  spec.homepage      = "https://github.com/superbothq/deliriumdriver"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
