@@ -11,25 +11,21 @@ module Delirium
 
           s.set :delirium_driver, Delirium::Platform.class_for_current_platform.new
 
-          s.post "/mouse/move" do
-            x = params[:x]
-            y = params[:y]
+          s.post "/:device/:action" do
+            device = params.delete "device"
+            action = params.delete "action"
+
+            delirium_params = {}
+            params.each_pair do |k,v|
+              delirium_params[k.to_sym] = v
+            end
 
             s.settings.delirium_driver.do({
-              device: :mouse,
-              action: :move,
-              params: { x: x, y: y }
+              device: device.to_sym,
+              action: action.to_sym,
+              params: delirium_params
             })
-          end
-
-          s.post "/keyboard/write" do
-            string = params[:string]
-
-            s.settings.delirium_driver.do({
-              device: :keyboard,
-              action: :write,
-              params: { string: string }
-            })
+            ""
           end
 
           s.run!
