@@ -10,6 +10,7 @@ module Delirium
           s.set :port, "9516"
 
           s.set :delirium_driver, Delirium::Platform.class_for_current_platform.new
+          s.set :root, Dir.pwd
 
           s.post "/:device/:action" do
             device = params.delete "device"
